@@ -77,9 +77,9 @@ const Result = () => {
         </div>
       )}
       <ReactPaginate
-        containerClassName={"flex gap-3 p-5 justify-center items-center"}
+        containerClassName={"flex w-full gap-3 p-5 justify-center items-center"}
         pageClassName={
-          "flex w-full bg-colors-blueGray-200 h-10 w-10 flex items-center justify-center rounded-full"
+          "flex bg-colors-blueGray-200 h-10 w-10 flex items-center justify-center rounded-full"
         }
         nextClassName={
           "flex bg-colors-blueGray-200 h-10 w-20 flex items-center justify-center rounded-full"
