@@ -1,12 +1,11 @@
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import createSagaMiddleware from "redux-saga";
 import { rootReducer } from "./rootReducer";
 import { reduxBatch } from "@manaflair/redux-batch";
 
 const sagaMiddleware = createSagaMiddleware();
-const middleware = [sagaMiddleware];
 
 const persistConfig = {
   key: "root",
@@ -16,7 +15,11 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
   reducer: persistedReducer,
-  middleware,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }).concat(sagaMiddleware),
+
   enhancers: [reduxBatch],
 });
 
