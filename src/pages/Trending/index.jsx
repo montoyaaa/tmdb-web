@@ -36,7 +36,9 @@ const Trending = () => {
 
       <div className="flex justify-center bg-colors-blueGray-800 ">
         <ReactPaginate
-          containerClassName={"flex gap-3 p-5 justify-center items-center"}
+          containerClassName={
+            "flex w-full gap-3 p-5 justify-center items-center"
+          }
           pageClassName={
             "flex bg-colors-blueGray-200 h-10 w-10 flex items-center justify-center rounded-full"
           }
