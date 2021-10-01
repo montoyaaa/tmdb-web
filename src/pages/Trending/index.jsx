@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import ReactPaginate from "react-paginate";
 
 import CardMovie from "../../components/CardMovie";
 import { actions } from "./redux/slice";
