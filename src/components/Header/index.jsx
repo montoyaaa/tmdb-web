@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
+import { Link as ScrollLink } from "react-scroll";
 
 import Filter from "../Filter";
 import { HeaderBar } from "./styles";
@@ -30,14 +31,18 @@ const Header = ({ isTransparent = false }) => {
         >
           Home
         </Link>
-        <Link
-          className={`md:flex mt-3 sm:m-0  ${
+        <ScrollLink
+          to="trendings"
+          smooth={true}
+          offset={-100}
+          duration={500}
+          onClick={() => history.push("/trendings#trendings")}
+          className={`md:flex mt-3 sm:m-0 cursor-pointer  ${
             pathname === "/trendings" ? "text-primary-400" : ""
           }`}
-          to="/trendings#trendings"
         >
           Trendings
-        </Link>
+        </ScrollLink>
       </span>
 
       <div className="flex items-center text-colors-white">

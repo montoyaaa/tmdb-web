@@ -1,10 +1,13 @@
 import React from "react";
-import { Link, Route, Switch } from "react-router-dom";
+import { Link, Route, Switch, useHistory } from "react-router-dom";
 import ReactSVG from "react-inlinesvg";
+import { Link as ScrollLink } from "react-scroll";
 
 import Trending from "../Trending";
 
 const HomePage = () => {
+  const history = useHistory();
+
   return (
     <div>
       <div className="flex flex-col justify-center items-center bg-colors-black">
@@ -28,9 +31,15 @@ const HomePage = () => {
             src="/assets/svg/logo-extended.svg"
           />
           <div className="mt-10 cursor-pointer">
-            <Link to="/trendings#trendings">
+            <ScrollLink
+              to="trendings"
+              smooth={true}
+              offset={-100}
+              duration={500}
+              onClick={() => history.push("/trendings#trendings")}
+            >
               <ReactSVG src="/assets/svg/arrow.svg" />
-            </Link>
+            </ScrollLink>
           </div>
         </div>
       </div>
