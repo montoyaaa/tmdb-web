@@ -4,6 +4,7 @@ import ReactPaginate from "react-paginate";
 
 import CardMovie from "../../components/CardMovie";
 import { actions } from "./redux/slice";
+import Paginator from "../../components/Paginator";
 
 const Trending = () => {
   const dispatch = useDispatch();
@@ -26,46 +27,27 @@ const Trending = () => {
         Tendências da semana
       </h1>
 
-      {movies?.results?.length !== 0 && (
-        <div className="flex justify-center flex-wrap gap-4 p-4">
-          {movies?.results?.map((movie) => (
-            <CardMovie key={movie.id} movie={movie} />
-          ))}
-        </div>
-      )}
+      {movies?.total_results !== 0 && (
+        <>
+          <div className="flex justify-center flex-wrap gap-4 p-4">
+            {movies?.results?.map((movie) => (
+              <CardMovie key={movie.id} movie={movie} />
+            ))}
+          </div>
 
-      <div className="flex justify-center bg-colors-blueGray-800 ">
-        <ReactPaginate
-          containerClassName={
-            "flex w-full gap-3 p-5 justify-center items-center"
-          }
-          pageClassName={
-            "flex bg-colors-blueGray-200 h-10 w-10 flex items-center justify-center rounded-full"
-          }
-          nextClassName={
-            "flex bg-colors-blueGray-200 h-10 w-20 flex items-center justify-center rounded-full"
-          }
-          previousClassName={
-            "flex bg-colors-blueGray-200 h-10 w-20 flex items-center justify-center rounded-full"
-          }
-          pageCount={movies?.total_pages}
-          onPageChange={(e) =>
-            dispatch(actions.getTrendingMovies(e.selected + 1))
-          }
-          marginPagesDisplayed={1}
-          pageRangeDisplayed={2}
-          activeClassName={
-            "flex bg-colors-blueGray-800 text-colors-white border h-10 w-10 flex items-center justify-center rounded-full"
-          }
-          initialPage={1}
-          previousLabel={"PREV"}
-          nextLabel={"NEXT"}
-          breakLabel={"..."}
-          breakClassName={
-            "flex bg-colors-blueGray-200 h-10 w-10 flex items-center justify-center rounded-full"
-          }
-        />
-      </div>
+          <div className="flex justify-center bg-colors-blueGray-800 p-5">
+            <Paginator
+              onClick={(e) => {
+                dispatch(actions.getTrendingMovies(e.target.value));
+                return window.scrollTo(0, document.body.scrollHeight);
+              }}
+              totalPages={movies?.total_pages}
+              currentPage={movies?.page}
+              range={1}
+            />
+          </div>
+        </>
+      )}
     </div>
   );
 };
