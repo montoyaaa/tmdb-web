@@ -1,0 +1,14 @@
+.arrows {
+  opacity: 0 !important;
+  transition: all ease 0.5s;
+}
+
+.list-area:hover .arrows {
+  opacity: 1 !important;
+}
+
+@media (max-width: 760px) {
+  .arrows {
+    opacity: 1 !important;
+  }
+}

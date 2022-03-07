@@ -1,10 +1,24 @@
+<<<<<<< Updated upstream
 import React from "react";
 import { Link, Route, Switch } from "react-router-dom";
 import ReactSVG from "react-inlinesvg";
+=======
+import React, { useEffect } from "react";
+
+import { Route, Switch } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+>>>>>>> Stashed changes
 
 import Trending from "../Trending";
 
+import ListSection from "../../components/ListSection";
+import VideoBanner from "../../components/VideoBanner";
+
+// Redux Actions
+import { actions } from "./redux/slice";
+
 const HomePage = () => {
+<<<<<<< Updated upstream
   return (
     <div>
       <div className="flex flex-col justify-center items-center bg-colors-black">
@@ -33,13 +47,55 @@ const HomePage = () => {
             </Link>
           </div>
         </div>
-      </div>
+=======
+  const dispatch = useDispatch();
 
-      <Switch>
-        <Route exact path="/trendings">
-          <Trending />
-        </Route>
-      </Switch>
+  useEffect(() => {
+    const promise = dispatch(actions.getTrendingMovies());
+
+    return () => {
+      promise.abort();
+    };
+  }, [dispatch]);
+
+  useEffect(() => {
+    const promise = dispatch(actions.getTrendingTvs());
+
+    return () => {
+      promise.abort();
+    };
+  }, [dispatch]);
+
+  const { trendingMovies, tv_series } = useSelector(({ home }) => ({
+    trendingMovies: home.movies,
+    tv_series: home.series,
+  }));
+  console.log(trendingMovies);
+  return (
+    <div>
+      <VideoBanner />
+      <div id="content">
+        <Switch>
+          <Route exact path="/trendings">
+            <Trending />
+          </Route>
+          <Route exact path="/">
+            <ListSection
+              title="Top filmes da semana"
+              goToAll="/trendings#trendings"
+              link="/movie"
+              list={trendingMovies}
+            />
+            <ListSection
+              title="Top séries da semana"
+              goToAll="/trendings#trendings"
+              link="/movie"
+              list={tv_series}
+            />
+          </Route>
+        </Switch>
+>>>>>>> Stashed changes
+      </div>
     </div>
   );
 };

@@ -9,7 +9,7 @@ export default function Layout({ children }) {
   const { pathname } = useLocation();
 
   return (
-    <div className="bg-blueGray-600 h-full">
+    <div className="bg-blueGray-900 h-full">
       <Header isTransparent={pathname === "/" ? true : false} />
       {children}
       <HashLinkObserver />
